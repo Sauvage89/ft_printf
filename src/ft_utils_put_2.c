@@ -6,12 +6,13 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/25 17:52:56 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/25 17:53:22 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/25 18:00:33 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "ft_specifier.h"
+#include "ft_utils.h"
 #include "libft.h"
 #include <stdint.h>
 
