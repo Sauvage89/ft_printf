@@ -6,36 +6,61 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 18:26:19 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/22 18:30:34 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/24 14:24:31 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	len_inb(long nb)
+#include "libft.h"
+
+unsigned int	len_int(long n)
 {
 	unsigned int	count;
 
 	count = 0;
-	if (nb < 0)
-		nb *= -1;
-	while (nb >= 10)
+	if (n < 0)
+		n *= -1;
+	while (n >= 10)
 	{
 		count++;
-		nb /= 10;
+		n /= 10;
 	}
 	count++;
 	return (count);
 }
 
-unsigned int	len_unb(unsigned int nb)
+unsigned int	len_uint(unsigned int n)
 {
 	unsigned int	count;
 
 	count = 0;
-	while (nb >= 10)
+	while (n >= 10)
 	{
 		count++;
-		nb /= 10;
+		n /= 10;
 	}
 	count++;
 	return (count);
+}
+
+char	*ft_ulbasetoc(unsigned long n, const char *base, char *buffer)
+{
+	unsigned long	n_save;
+	int				count;
+	
+	count = 0;
+	n_save = n;
+	while (n_save >= (unsigned long)ft_strlen(base))
+	{
+		count++;
+		n_save /= ft_strlen(base);
+	}
+	count++;
+	buffer[count] = 0;
+	while (count > 1)
+	{
+		count--;
+		buffer[count] = base[n % ft_strlen(base)];
+		n /= ft_strlen(base);
+	}
+	return (buffer);
 }

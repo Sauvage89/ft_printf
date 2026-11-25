@@ -6,7 +6,7 @@
 #    By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/05 14:02:03 by lensauva          #+#    #+#              #
-#    Updated: 2026/11/22 19:20:05 by lensauva         ###   ########lyon.fr    #
+#    Updated: 2026/11/25 16:41:58 by lensauva         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,20 +30,30 @@ LINK_LIBFT	:= ft
 # ================================ FLAGS ==================================== #
 
 CFLAGS		:= -Wall -Wextra -Werror
+CFLAGS		:= 
 CINCLUDE	:= -I$(DIR_INC) -Ilibft -MMD -MP
 LDFLAGS		:= -L$(DIR_LIBFT) -l$(LINK_LIBFT)
 
 # =============================== SOURCES ==================================== #
 
-SRC_FILES	:= main.c \
-			   print_i.c \
+SRC_FILES	:= ft_printf.c \
+			   ft_print_specifier.c \
 			   ft_handle_sign.c \
 			   ft_handle_hex.c \
 			   ft_handle_prefix.c \
-			   ft_handle_sufix.c \
+			   ft_handle_suffix.c \
 			   ft_utils_nb.c \
 			   ft_utils_put.c \
-			   ft_utils_str.c
+			   ft_utils_str.c \
+			   ft_specifier.c
+
+#			   print_d.c \
+#			   print_u.c \
+#			   print_s.c \
+#			   print_c.c \
+#			   print_x.c \
+#			   print_X.c \
+#			   print_p.c \
 
 SRCS		:= $(addprefix $(DIR_SRC)/, $(SRC_FILES))
 OBJS		:= $(SRCS:$(DIR_SRC)/%.c=$(DIR_OBJ)/%.o)

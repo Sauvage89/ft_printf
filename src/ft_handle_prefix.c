@@ -6,64 +6,68 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 18:27:31 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/22 19:14:59 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/25 13:14:44 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_tspecifier.h"
+#include "ft_specifier.h"
 #include "ft_utils.h"
 #include "libft.h"
+#include <stdio.h>
 
-static void	set_prefix_dot_number(char *flag, char cspecifier, t_specifier *tspecifier)
+static void	set_prefix_dot_number(char *flag, char cspecifier, t_specifier *spec)
 {
-	int	nb_flag;
+	char	buffer[18];
+	int		nb_flag;
 	
-	ft_memset(tspecifier->prefix.buffer, '0', 64);
+	ft_memset(spec->prefix.buffer, '0', 64);
 	nb_flag = ft_atoi(ft_strrchr(flag, '.') + 1);
 	if (cspecifier == 'd' || cspecifier == 'i')
-		nb_flag -= len_inb(*(int *)tspecifier->value);
-	else if (cspecifier == 'u' || cspecifier == 'x' || cspecifier == 'X' || cspecifier == 'p')
-		nb_flag -= len_unb(*(unsigned int *)tspecifier->value);
+		nb_flag -= len_int(spec->value.as_int);
+	else if (ft_strchr("uxX", cspecifier))
+		nb_flag -= len_uint(spec->value.as_uint);
+	else if (cspecifier == 'p')
+		nb_flag -= ft_strlen(ft_ulbasetoc(spec->value.as_uint, "0123456789abcdef", buffer));
+	if (cspecifier == 'p')
+		nb_flag -= ft_strlen(spec->hex);
 	if (nb_flag < 0)
 		nb_flag = 0;
-	tspecifier->prefix.size = nb_flag;
+	spec->prefix.size = nb_flag;
 }
 
-static void	set_prefix_dot(char *flag, char cspecifier, t_specifier *tspecifier)
+static void	set_prefix_dot(char *flag, char cspecifier, t_specifier *spec)
 {
 	int	nb_flag;
 	
-	if (cspecifier == 'd' || cspecifier == 'i' || cspecifier == 'u' || cspecifier == 'x' || cspecifier == 'X' || cspecifier == 'p')
-		return (set_prefix_dot_number(flag, cspecifier, tspecifier));
+	if (ft_strchr("diuxXp", cspecifier))
+		return (set_prefix_dot_number(flag, cspecifier, spec));
 	nb_flag = ft_atoi(ft_strrchr(flag, '.') + 1);
-	if (cspecifier == 's' && (size_t)nb_flag < ft_strlen(tspecifier->value))
-		((char *)tspecifier->value)[nb_flag] = 0;
+	if (cspecifier == 's' && (size_t)nb_flag < ft_strlen(spec->value.as_str))
+		(spec->value.as_str)[nb_flag] = 0;
 }
 
-void	set_prefix(char *flag, char cspecifier, t_specifier *tspecifier)
+void	set_prefix(char *flag, char cspecifier, t_specifier *spec)
 {
+	char	buffer[18];
 	int	nb_flag;
 
 	if (ft_strnstr(flag, ".", ft_strlen(flag)))
-		return (set_prefix_dot(flag, cspecifier, tspecifier));
-	if (ft_strnstr(flag, "-", ft_strlen(flag)))
+		return (set_prefix_dot(flag, cspecifier, spec));
+	if (ft_strnstr(flag, "-", ft_strlen(flag)) || ft_strchr("cs", cspecifier))
 		return ;
 	if (!ft_strnstr(flag, "0", ft_strlen(flag)))
 		return ;
-	ft_memset(tspecifier->prefix.buffer, '0', 64);
+	ft_memset(spec->prefix.buffer, '0', 64);
 	nb_flag = ft_atoi(ft_strchr(flag, '0') + 1);
-	if (cspecifier == 'c')
-		nb_flag -= 1;
-	else if (cspecifier == 's')
-		nb_flag -= ft_strlen((char *)tspecifier->value);
-	else if (cspecifier == 'd' || cspecifier == 'i')
-	{
-		nb_flag -= len_inb(*(int *)tspecifier->value);
-	}
-	else if (cspecifier == 'u' || cspecifier == 'x' || cspecifier == 'X' || cspecifier == 'p')
-		nb_flag -= len_unb(*(unsigned int *)tspecifier->value);
-	nb_flag -= ft_strlen(tspecifier->sign);
+	if (ft_strchr("di", cspecifier))
+		nb_flag -= len_int(spec->value.as_int);
+	if (cspecifier == 'u')
+		nb_flag -= len_uint(spec->value.as_uint);
+	if (cspecifier == 'p')
+		nb_flag -= ft_strlen(ft_ulbasetoc(spec->value.as_uint, "0123456789abcdef", buffer));
+	nb_flag -= ft_strlen(spec->sign);
+	nb_flag -= ft_strlen(spec->hex);
 	if (nb_flag < 0)
 		nb_flag = 0;
-	tspecifier->prefix.size = nb_flag;
+	spec->prefix.size = nb_flag;
 }
