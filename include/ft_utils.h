@@ -6,18 +6,19 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 19:06:42 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/25 17:16:54 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/25 17:46:46 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_UTILS_H
 # define FT_UTILS_H
 
-#include <stdio.h>
-typedef struct s_specifier t_specifier;
-typedef struct s_stralloc t_stralloc;
+# include <stdio.h>
 
-void	ft_putvalue_fd(t_specifier *spec, char cspecifier, int fd);
-ssize_t	ft_putnstr_fd(const char *s, size_t len, int fd);
+typedef struct s_specifier	t_specifier;
+typedef struct s_stralloc	t_stralloc;
+
+void			ft_putvalue_fd(t_specifier *spec, char cspecifier, int fd);
+ssize_t			ft_putnstr_fd(const char *s, size_t len, int fd);
 ssize_t			ft_putstralloc_fd(t_stralloc *str, int fd);
 ssize_t			ft_putint_nsign_fd(long n, int fd);
 ssize_t			ft_putuintbase_fd(unsigned int n, int fd, char *base);

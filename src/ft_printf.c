@@ -6,7 +6,7 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:39:25 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/25 17:32:12 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/25 17:54:02 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	ft_verifier(const char *format)
 static ssize_t	ft_dispatch(const char **format, va_list ap, size_t *ret)
 {
 	void	*ap_val;
-	int	len;
+	int		len;
 	ssize_t	ret_tmp;
 
 	len = ft_verifier(*format);
@@ -66,12 +66,11 @@ static ssize_t	ft_dispatch(const char **format, va_list ap, size_t *ret)
 	return (ret_tmp);
 }
 
-
 int	ft_printf_while(const char **format, va_list ap)
 {
 	ssize_t	ret_tmp;
 	size_t	ret;
-	
+
 	ret = 0;
 	ret_tmp = 0;
 	while (**format && ret_tmp != -1)
@@ -79,7 +78,8 @@ int	ft_printf_while(const char **format, va_list ap)
 		ret_tmp = (ssize_t)ft_strchr(*format, '%');
 		if (ret_tmp == 0)
 			return (ret_tmp);
-		ret_tmp = ft_putnstr_fd(*format, (unsigned long)ret_tmp - (unsigned long)*format, 1);
+		ret_tmp = ft_putnstr_fd(*format,
+				(unsigned long)ret_tmp - (unsigned long)*format, 1);
 		if (ret_tmp == -1)
 			return (ret_tmp);
 		*format = *format + ret_tmp;
@@ -110,9 +110,8 @@ int	ft_printf(const char *format, ...)
 	return (ret);
 }
 
-int	main()
+int	main(void)
 {
-
 	ft_printf("yo sa va %i\n", "prout");
 	return (0);
 }

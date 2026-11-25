@@ -6,7 +6,7 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 18:27:31 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/25 13:14:44 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/25 17:52:16 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 #include "libft.h"
 #include <stdio.h>
 
-static void	set_prefix_dot_number(char *flag, char cspecifier, t_specifier *spec)
+static void	set_prefix_dot_number(char *flag, char cspecifier,
+		t_specifier *spec)
 {
 	char	buffer[18];
 	int		nb_flag;
-	
+
 	ft_memset(spec->prefix.buffer, '0', 64);
 	nb_flag = ft_atoi(ft_strrchr(flag, '.') + 1);
 	if (cspecifier == 'd' || cspecifier == 'i')
@@ -27,7 +28,8 @@ static void	set_prefix_dot_number(char *flag, char cspecifier, t_specifier *spec
 	else if (ft_strchr("uxX", cspecifier))
 		nb_flag -= len_uint(spec->value.as_uint);
 	else if (cspecifier == 'p')
-		nb_flag -= ft_strlen(ft_ulbasetoc(spec->value.as_uint, "0123456789abcdef", buffer));
+		nb_flag -= ft_strlen(ft_ulbasetoc(spec->value.as_uint,
+					"0123456789abcdef", buffer));
 	if (cspecifier == 'p')
 		nb_flag -= ft_strlen(spec->hex);
 	if (nb_flag < 0)
@@ -38,7 +40,7 @@ static void	set_prefix_dot_number(char *flag, char cspecifier, t_specifier *spec
 static void	set_prefix_dot(char *flag, char cspecifier, t_specifier *spec)
 {
 	int	nb_flag;
-	
+
 	if (ft_strchr("diuxXp", cspecifier))
 		return (set_prefix_dot_number(flag, cspecifier, spec));
 	nb_flag = ft_atoi(ft_strrchr(flag, '.') + 1);
@@ -49,7 +51,7 @@ static void	set_prefix_dot(char *flag, char cspecifier, t_specifier *spec)
 void	set_prefix(char *flag, char cspecifier, t_specifier *spec)
 {
 	char	buffer[18];
-	int	nb_flag;
+	int		nb_flag;
 
 	if (ft_strnstr(flag, ".", ft_strlen(flag)))
 		return (set_prefix_dot(flag, cspecifier, spec));
@@ -64,7 +66,8 @@ void	set_prefix(char *flag, char cspecifier, t_specifier *spec)
 	if (cspecifier == 'u')
 		nb_flag -= len_uint(spec->value.as_uint);
 	if (cspecifier == 'p')
-		nb_flag -= ft_strlen(ft_ulbasetoc(spec->value.as_uint, "0123456789abcdef", buffer));
+		nb_flag -= ft_strlen(ft_ulbasetoc(spec->value.as_uint,
+					"0123456789abcdef", buffer));
 	nb_flag -= ft_strlen(spec->sign);
 	nb_flag -= ft_strlen(spec->hex);
 	if (nb_flag < 0)

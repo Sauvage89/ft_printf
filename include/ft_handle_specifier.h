@@ -5,14 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/22 19:03:24 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/24 11:38:50 by lensauva         ###   ########lyon.fr   */
+/*   Created: 2026/11/25 17:43:55 by lensauva          #+#    #+#             */
+/*   Updated: 2026/11/25 17:45:42 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef FT_HANDLE_TSPECIFIER_H
-# define FT_HANDLE_TSPECIFIER_H
 
-typedef struct s_specifier t_specifier;
+#ifndef FT_HANDLE_SPECIFIER_H
+# define FT_HANDLE_SPECIFIER_H
+
+typedef struct s_specifier	t_specifier;
 
 void	set_sign(char *flag, char cspecifier, t_specifier *tspecifier);
 void	set_hex(char *flag, char cspecifier, t_specifier *tspecifier);

@@ -6,7 +6,7 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 18:46:30 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/25 17:27:38 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/25 17:53:06 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ ssize_t	ft_putuintbase_fd(unsigned int n, int fd, char *convert)
 	unsigned int	n_save;
 	char			buffer[32];
 	int				len_n;
-		
+
 	len_n = 0;
 	n_save = n;
 	while (n_save >= ft_strlen(convert))
@@ -84,7 +84,7 @@ ssize_t	ft_putulbase_fd(unsigned long n, int fd, char *convert)
 	unsigned long	n_save;
 	char			buffer[32];
 	int				len_n;
-		
+
 	len_n = 0;
 	n_save = n;
 	while (n_save >= ft_strlen(convert))
@@ -117,24 +117,4 @@ ssize_t	ft_putnstr_fd(const char *s, size_t len, int fd)
 	if (ret < (ssize_t)len_s)
 		return (ERROR_WRITE);
 	return (ret);
-}
-
-void	ft_putvalue_fd(t_specifier *spec, char cspecifier, int fd)
-{
-	if (cspecifier == 'c')
-		ft_putchar_fd(spec->value.as_chr, fd);
-	else if (cspecifier == 's')
-		ft_putstr_fd(spec->value.as_str, fd);
-	else if (cspecifier == 'd')
-		ft_putint_nsign_fd(spec->value.as_int, fd);
-	else if (cspecifier == 'i')
-		ft_putint_nsign_fd(spec->value.as_int, fd);
-	else if (cspecifier == 'u')
-		ft_putuintbase_fd(spec->value.as_uint, fd, "0123456789");
-	else if (cspecifier == 'x')
-		ft_putuintbase_fd(spec->value.as_uint, fd, "0123456789abcdef");
-	else if (cspecifier == 'X')
-		ft_putuintbase_fd(spec->value.as_uint, fd, "0123456789ABCDEF");
-	else if (cspecifier == 'p')
-		ft_putulbase_fd(spec->value.as_ul, fd, "0123456789abcdef");
 }

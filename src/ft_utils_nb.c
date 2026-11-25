@@ -6,7 +6,7 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 18:26:19 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/24 14:24:31 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/25 17:47:27 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_ulbasetoc(unsigned long n, const char *base, char *buffer)
 {
 	unsigned long	n_save;
 	int				count;
-	
+
 	count = 0;
 	n_save = n;
 	while (n_save >= (unsigned long)ft_strlen(base))

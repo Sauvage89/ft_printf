@@ -6,11 +6,11 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 18:47:58 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/25 17:12:59 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/25 17:46:09 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef FT_TSPECIFIER_H
-# define FT_TSPECIFIER_H
+#ifndef FT_SPECIFIER_H
+# define FT_SPECIFIER_H
 
 # include <aio.h>
 
@@ -32,7 +32,6 @@ typedef struct s_stralloc
 	size_t	size;
 	size_t	max;
 }	t_stralloc;
-
 
 typedef struct s_specifier
 {
