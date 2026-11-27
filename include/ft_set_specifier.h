@@ -6,11 +6,9 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/27 13:58:33 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 14:01:05 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/27 19:57:03 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 #ifndef FT_SET_SPECIFIER_H
 # define FT_SET_SPECIFIER_H
 

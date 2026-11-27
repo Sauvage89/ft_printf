@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_specifier_bonus.h                        :+:      :+:    :+:   */
+/*   ft_set_specifier_bonus.h                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/25 17:43:55 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 17:01:11 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/27 19:56:03 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-#ifndef FT_HANDLE_SPECIFIER_H
-# define FT_HANDLE_SPECIFIER_H
+#ifndef FT_SET_SPECIFIER_BONUS_H
+# define FT_SET_SPECIFIER_BONUS_H
 
 typedef struct s_specifier	t_specifier;
 

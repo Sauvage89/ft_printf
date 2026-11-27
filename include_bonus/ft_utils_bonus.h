@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.h                                         :+:      :+:    :+:   */
+/*   ft_utils_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 19:06:42 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 13:09:58 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/27 19:56:43 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef FT_UTILS_H
-# define FT_UTILS_H
+#ifndef FT_UTILS_BONUS_H
+# define FT_UTILS_BONUS_H
 
 # include <stdio.h>
 

@@ -6,7 +6,7 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:39:25 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 17:46:44 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/27 19:53:44 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ static ssize_t	ft_print_specifier(char *flag, char cspecifier, void *value)
 	ft_set_hex(flag, cspecifier, &spec);
 	ft_set_prefix(flag, cspecifier, &spec);
 	ft_set_suffix(flag, cspecifier, &spec);
-	if (ft_strchr("i", cspecifier) && ft_strchr(flag, '.') && ft_atoi(ft_strrchr(flag, '.') + 1) == 0 && spec.value.as_int == 0)
+	if (ft_strchr("i", cspecifier) && ft_strchr(flag, '.')
+		&& ft_atoi(ft_strrchr(flag, '.') + 1) == 0
+		&& spec.value.as_int == 0)
 		return (ft_putspec_nzero_fd(flag, &spec, cspecifier, 1));
 	return (ft_putspec_fd(flag, &spec, cspecifier, 1));
 }

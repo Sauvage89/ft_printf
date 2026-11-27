@@ -6,14 +6,14 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 18:46:30 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 16:46:30 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/27 19:54:51 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdint.h>
 #include <unistd.h>
 #include "ft_specifier_bonus.h"
 #include "libft.h"
-#include <stdint.h>
 
 ssize_t	ft_putstralloc_fd(t_stralloc *str, int fd)
 {

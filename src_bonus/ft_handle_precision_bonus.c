@@ -6,7 +6,7 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/27 16:47:25 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 17:17:51 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/27 19:52:42 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	set_precision_number(char *flag, char cspecifier,
 	(void)cspecifier;
 	ft_memset(spec->prefix.buffer, '0', 64);
 	nb_flag = ft_atoi(ft_strrchr(flag, '.') + 1);
-//	set_prefix_lenvalue(flag, cspecifier, spec, nb_flag);
 }
 
 void	ft_set_prefix_dot(char *flag, char cspecifier, t_specifier *spec)
@@ -32,5 +31,4 @@ void	ft_set_prefix_dot(char *flag, char cspecifier, t_specifier *spec)
 	if (ft_strchr("diuxXp", cspecifier))
 		return (set_precision_number(flag, cspecifier, spec));
 	nb_flag = ft_atoi(ft_strrchr(flag, '.') + 1);
-//	set_prefix_lenvalue(flag, cspecifier, spec, nb_flag);
 }

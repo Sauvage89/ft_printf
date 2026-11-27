@@ -6,7 +6,7 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/25 17:52:56 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 16:46:40 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/27 19:53:13 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ ssize_t	ft_putvalue_fd(char *format, t_specifier *spec, char cspecifier, int fd)
 	return (0);
 }
 
-ssize_t	ft_putspec_nzero_fd(char *format, t_specifier *spec, char cspecifier, int fd)
+ssize_t	ft_putspec_nzero_fd(char *format, t_specifier *spec,
+		char cspecifier, int fd)
 {
 	ssize_t		ret;
 	ssize_t		ret_tmp;

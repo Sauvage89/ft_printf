@@ -6,7 +6,7 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/27 13:49:44 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 14:28:15 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/27 19:55:01 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include "libft.h"
 #include "ft_utils.h"
+
 ssize_t	ft_putint_nsign_fd(long n, int fd)
 {
 	char	buffer[12];
