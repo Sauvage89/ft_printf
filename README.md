@@ -151,3 +151,9 @@ Compile your program and link it against the library:
 ### flag <width>
 
 In the research the comportement of width was nor researched and its result on the abandon of bonus part for this project
+
+## Use of AI
+
+- Documentation and research related to C syntax, variadic arguments, and printf() behavior.
+- Assistance with Makefile structure and compilation rules.
+- README writing and proofreading.
