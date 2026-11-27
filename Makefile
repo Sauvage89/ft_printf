@@ -6,7 +6,7 @@
 #    By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/05 14:02:03 by lensauva          #+#    #+#              #
-#    Updated: 2026/11/25 17:59:56 by lensauva         ###   ########lyon.fr    #
+#    Updated: 2026/11/27 12:34:50 by lensauva         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ SRC_FILES	:= ft_printf.c \
 			   ft_utils_put_1.c \
 			   ft_utils_put_2.c \
 			   ft_utils_str.c \
-			   ft_specifier.c
+			   ft_specifier.c \
+			   tester2.c
 
 SRCS		:= $(addprefix $(DIR_SRC)/, $(SRC_FILES))
 OBJS		:= $(SRCS:$(DIR_SRC)/%.c=$(DIR_OBJ)/%.o)

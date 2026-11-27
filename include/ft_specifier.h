@@ -6,7 +6,7 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 18:47:58 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/25 17:46:09 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/27 12:19:11 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_SPECIFIER_H
@@ -43,6 +43,6 @@ typedef struct s_specifier
 }	t_specifier;
 
 void	init_specifier(t_specifier *spec);
-void	ft_print_specifier(char *flag, char cspecifier, void *value);
+void	set_value(char cspecifier, t_specifier *spec, void *value);
 
 #endif

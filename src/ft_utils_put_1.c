@@ -6,7 +6,7 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 18:46:30 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/25 17:53:06 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/26 16:05:16 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ ssize_t	ft_putint_nsign_fd(long n, int fd)
 	long	n_save;
 	uint8_t	len;
 
+	if (n == 0)
+		return (ft_putstr_fd("0", fd));
 	len = 0;
 	n_save = n;
 	while (n_save != 0)
@@ -46,6 +48,8 @@ ssize_t	ft_putint_nsign_fd(long n, int fd)
 		len++;
 	}
 	buffer[len] = 0;
+	if (n < 0)
+		n *= -1;
 	while (n != 0)
 	{
 		len--;
@@ -85,6 +89,8 @@ ssize_t	ft_putulbase_fd(unsigned long n, int fd, char *convert)
 	char			buffer[32];
 	int				len_n;
 
+	if (n == 0)
+		return (ft_putstr_fd("0", fd));
 	len_n = 0;
 	n_save = n;
 	while (n_save >= ft_strlen(convert))

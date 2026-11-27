@@ -6,33 +6,25 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:39:25 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/25 17:54:02 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/27 12:58:55 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_print.h"
 #include "ft_utils.h"
 #include "ft_specifier.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
-#include <stdbool.h>
 
 static int	ft_verifier(const char *format)
 {
 	size_t	i;
-	bool	is_width;
 
 	format++;
 	i = 0;
-	is_width = 0;
 	while (format[i] && ft_strchr(" -0#+", format[i]))
-	{
-		if (ft_strchr("-0.", format[i]))
-			is_width = 1;
 		i++;
-	}
 	while (ft_isdigit(format[i]))
 		i++;
 	if (format[i] == '.')
@@ -44,11 +36,31 @@ static int	ft_verifier(const char *format)
 	return (1);
 }
 
+static ssize_t	ft_print_specifier(char *flag, char cspecifier, void *value)
+{
+	t_specifier	spec;
+
+	init_specifier(&spec);
+	set_value(cspecifier, &spec, value);
+	if (cspecifier == 's' && spec.value.as_str == 0)
+		return (ft_putstr_fd("(null)", 1));
+	if (cspecifier == 'p' && spec.value.as_ptr == 0)
+		return (ft_putstr_fd("(nil)", 1));
+	set_sign(flag, cspecifier, &spec);
+	set_hex(flag, cspecifier, &spec);
+	set_prefix(flag, cspecifier, &spec);
+	set_suffix(flag, cspecifier, &spec);
+	if (ft_strchr("i", cspecifier) && ft_strchr(flag, '.') && ft_atoi(ft_strrchr(flag, '.') + 1) == 0 && spec.value.as_int == 0)
+		return (ft_putspec_nzero_fd(flag, &spec, cspecifier, 1));
+	return (ft_putspec_fd(flag, &spec, cspecifier, 1));
+}
+
 static ssize_t	ft_dispatch(const char **format, va_list ap, size_t *ret)
 {
 	void	*ap_val;
 	int		len;
 	ssize_t	ret_tmp;
+	char	*buffer;
 
 	len = ft_verifier(*format);
 	if (len == 1)
@@ -59,14 +71,18 @@ static ssize_t	ft_dispatch(const char **format, va_list ap, size_t *ret)
 	else
 	{
 		ap_val = va_arg(ap, void *);
-		ft_print_specifier((char *)*format, (*format)[len - 1], ap_val);
+		buffer = ft_substr(*format, 0, len);
+		ret_tmp = ft_print_specifier(buffer, (*format)[len - 1], ap_val);
+		free(buffer);
 	}
+	if (ret_tmp == -1)
+		return (-1);
 	*format += len;
 	*ret += ret_tmp;
 	return (ret_tmp);
 }
 
-int	ft_printf_while(const char **format, va_list ap)
+static int	ft_printf_while(const char **format, va_list ap)
 {
 	ssize_t	ret_tmp;
 	size_t	ret;
@@ -77,7 +93,7 @@ int	ft_printf_while(const char **format, va_list ap)
 	{
 		ret_tmp = (ssize_t)ft_strchr(*format, '%');
 		if (ret_tmp == 0)
-			return (ret_tmp);
+			break ;
 		ret_tmp = ft_putnstr_fd(*format,
 				(unsigned long)ret_tmp - (unsigned long)*format, 1);
 		if (ret_tmp == -1)
@@ -108,10 +124,4 @@ int	ft_printf(const char *format, ...)
 		return (-1);
 	ret += (size_t)ret_tmp;
 	return (ret);
-}
-
-int	main(void)
-{
-	ft_printf("yo sa va %i\n", "prout");
-	return (0);
 }
