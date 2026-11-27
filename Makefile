@@ -6,7 +6,7 @@
 #    By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/05 14:02:03 by lensauva          #+#    #+#              #
-#    Updated: 2026/11/27 19:03:52 by lensauva         ###   ########lyon.fr    #
+#    Updated: 2026/11/27 20:24:32 by lensauva         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ LIBFT			:= $(DIR_LIBFT)/libft.a
 
 CC				:= cc
 CFLAGS			:= -Wall -Wextra -Werror
-CFLAGS			:= 
 DEPFLAGS		:= -MMD -MP
 INC				:= -I$(DIR_INC) -I$(DIR_LIBFT)
 INC_BONUS		:= -I$(DIR_INC_BONUS) -I$(DIR_LIBFT)

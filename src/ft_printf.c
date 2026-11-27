@@ -6,7 +6,7 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/27 13:24:35 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 19:20:45 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/27 20:32:58 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static size_t	ft_verifier(const char *format)
 	return (1);
 }
 
-static ssize_t	ft_print_specifier(char *flag, char cspecifier, void *value)
+static ssize_t	ft_print_specifier(char cspecifier, void *value)
 {
 	t_specifier	spec;
 
@@ -39,31 +39,27 @@ static ssize_t	ft_print_specifier(char *flag, char cspecifier, void *value)
 		return (ft_putstr_fd("(null)", 1));
 	if (cspecifier == 'p' && spec.value.as_ptr == 0)
 		return (ft_putstr_fd("(nil)", 1));
-	ft_set_sign(flag, cspecifier, &spec);
-	ft_set_hex(flag, cspecifier, &spec);
-	return (ft_putspec_fd(flag, &spec, cspecifier, 1));
+	ft_set_sign(cspecifier, &spec);
+	ft_set_hex(cspecifier, &spec);
+	return (ft_putspec_fd(&spec, cspecifier, 1));
 }
 
 size_t	ft_dispatch(const char **format, va_list ap, size_t *ret)
 {
 	void	*ap_val;
-	char	*buffer;
 	size_t	len;
 	size_t	ret_tmp;
 
 	if (**format == 0)
 		return (0);
+	ret_tmp = 0;
 	len = ft_verifier(*format);
 	if (len == 1 || (len == 2 && (*format)[1] == '%'))
 		ret_tmp = ft_putchar_fd('%', 1);
 	else if ((*format)[1] != '%')
 	{
 		ap_val = va_arg(ap, void *);
-		buffer = ft_substr(*format, 0, len);
-		if (buffer == 0)
-			return (-2);
-		ret_tmp = ft_print_specifier(buffer, (*format)[len - 1], ap_val);
-		free(buffer);
+		ret_tmp = ft_print_specifier((*format)[len - 1], ap_val);
 	}
 	if (ret_tmp < 0)
 		return (ret_tmp);

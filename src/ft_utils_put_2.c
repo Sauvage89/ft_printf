@@ -6,7 +6,7 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/27 13:50:14 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 14:29:27 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/27 20:32:01 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_specifier.h"
 #include "libft.h"
 
-static ssize_t	ft_putvalue_fd(char *format, t_specifier *spec,
+static ssize_t	ft_putvalue_fd(t_specifier *spec,
 		char cspecifier, int fd)
 {
 	if (cspecifier == 'c')
@@ -36,7 +36,7 @@ static ssize_t	ft_putvalue_fd(char *format, t_specifier *spec,
 	return (0);
 }
 
-ssize_t	ft_putspec_fd(char *format, t_specifier *spec, char cspecifier, int fd)
+ssize_t	ft_putspec_fd(t_specifier *spec, char cspecifier, int fd)
 {
 	ssize_t		ret;
 	ssize_t		ret_tmp;
@@ -48,7 +48,7 @@ ssize_t	ft_putspec_fd(char *format, t_specifier *spec, char cspecifier, int fd)
 	if (ret_tmp == -1)
 		return (-1);
 	ret += ret_tmp;
-	ret_tmp = ft_putvalue_fd(format, spec, cspecifier, fd);
+	ret_tmp = ft_putvalue_fd(spec, cspecifier, fd);
 	if (ret_tmp == -1)
 		return (-1);
 	ret += ret_tmp;

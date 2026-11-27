@@ -6,7 +6,7 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/25 17:52:56 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 19:53:13 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/27 20:40:38 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "libft.h"
 #include <stdint.h>
 
-ssize_t	ft_putvalue_fd(char *format, t_specifier *spec, char cspecifier, int fd)
+ssize_t	ft_putvalue_fd(t_specifier *spec, char cspecifier, int fd)
 {
 	if (cspecifier == 'c')
 		return (ft_putchar_fd(spec->value.as_chr, fd));
@@ -37,8 +37,7 @@ ssize_t	ft_putvalue_fd(char *format, t_specifier *spec, char cspecifier, int fd)
 	return (0);
 }
 
-ssize_t	ft_putspec_nzero_fd(char *format, t_specifier *spec,
-		char cspecifier, int fd)
+ssize_t	ft_putspec_nzero_fd(t_specifier *spec, int fd)
 {
 	ssize_t		ret;
 	ssize_t		ret_tmp;
@@ -62,7 +61,7 @@ ssize_t	ft_putspec_nzero_fd(char *format, t_specifier *spec,
 	return (ret + ret_tmp);
 }
 
-ssize_t	ft_putspec_fd(char *format, t_specifier *spec, char cspecifier, int fd)
+ssize_t	ft_putspec_fd(t_specifier *spec, char cspecifier, int fd)
 {
 	ssize_t		ret;
 	ssize_t		ret_tmp;
@@ -78,7 +77,7 @@ ssize_t	ft_putspec_fd(char *format, t_specifier *spec, char cspecifier, int fd)
 	if (ret_tmp == -1)
 		return (-1);
 	ret += ret_tmp;
-	ret_tmp = ft_putvalue_fd(format, spec, cspecifier, fd);
+	ret_tmp = ft_putvalue_fd(spec, cspecifier, fd);
 	if (ret_tmp == -1)
 		return (-1);
 	ret += ret_tmp;

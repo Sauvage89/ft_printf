@@ -6,7 +6,7 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/27 14:00:06 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 14:28:53 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/27 20:32:13 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_UTILS_H
@@ -16,7 +16,7 @@
 
 typedef struct s_specifier	t_specifier;
 
-ssize_t			ft_putspec_fd(char *format, t_specifier *spec,
+ssize_t			ft_putspec_fd(t_specifier *spec,
 					char cspecifier, int fd);
 ssize_t			ft_putspec_nzero_fd(char *format, t_specifier *spec,
 					char cspecifier, int fd);
