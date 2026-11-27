@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_suffix.c                                 :+:      :+:    :+:   */
+/*   ft_handle_suffix_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 18:28:54 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 13:12:06 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/27 17:00:36 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_specifier.h"
-#include "ft_utils.h"
+#include "ft_specifier_bonus.h"
+#include "ft_utils_bonus.h"
 #include "libft.h"
 
 static void	set_suffix_len(char *flag, char cspecifier, t_specifier *spec)
@@ -42,7 +42,7 @@ static void	set_suffix_len(char *flag, char cspecifier, t_specifier *spec)
 	spec->suffix.size = nb_flag;
 }
 
-void	set_suffix(char *flag, char cspecifier, t_specifier *spec)
+void	ft_set_suffix(char *flag, char cspecifier, t_specifier *spec)
 {
 	if (!ft_strnstr(flag, "-", ft_strlen(flag)))
 		return ;

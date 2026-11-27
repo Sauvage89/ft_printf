@@ -5,28 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/24 11:19:16 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 12:21:18 by lensauva         ###   ########lyon.fr   */
+/*   Created: 2026/11/27 13:57:08 by lensauva          #+#    #+#             */
+/*   Updated: 2026/11/27 14:30:57 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "ft_handle_specifier.h"
 #include "ft_specifier.h"
-#include "ft_utils.h"
-#include "libft.h"
 
-void	init_specifier(t_specifier *specifier)
+void	ft_init_specifier(t_specifier *specifier)
 {
 	specifier->sign[0] = 0;
 	specifier->hex[0] = 0;
-	specifier->prefix.max = STRALLOC_MAX_BUFFER;
-	specifier->prefix.size = 0;
-	specifier->suffix.max = STRALLOC_MAX_BUFFER;
-	specifier->suffix.size = 0;
 }
 
-void	set_value(char cspecifier, t_specifier *spec, void *value)
+void	ft_set_value(char cspecifier, t_specifier *spec, void *value)
 {
 	if (cspecifier == 'c')
 		spec->value = (t_value){.as_chr = (char)(unsigned long)value};

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_prefix.c                                 :+:      :+:    :+:   */
+/*   ft_handle_width_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/22 18:27:31 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 13:11:17 by lensauva         ###   ########lyon.fr   */
+/*   Created: 2026/11/27 16:50:03 by lensauva          #+#    #+#             */
+/*   Updated: 2026/11/27 17:00:46 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_specifier.h"
-#include "ft_utils.h"
+#include "ft_specifier_bonus.h"
+#include "ft_utils_bonus.h"
 #include "libft.h"
-#include <stdio.h>
+#include <stdint.h>
 
-static void	set_prefix_width(char *flag, char cspecifier,
+void	ft_set_width(char *flag, char cspecifier,
 		t_specifier *spec, int width)
 {
 	char	buffer[18];
@@ -40,18 +40,4 @@ static void	set_prefix_width(char *flag, char cspecifier,
 	if (width < 0)
 		width = 0;
 	spec->prefix.size = width;
-}
-
-void	set_prefix(char *flag, char cspecifier, t_specifier *spec)
-{
-	int	width;
-
-	if (ft_strnstr(flag, "-", ft_strlen(flag)))
-		return ;
-	if (ft_strnstr(flag, "0", ft_strlen(flag)))
-		ft_memset(spec->prefix.buffer, '0', 64);
-	else
-		ft_memset(spec->prefix.buffer, ' ', 64);
-	width = ft_atoi_prefix(flag);
-	set_prefix_width(flag, cspecifier, spec, width);
 }

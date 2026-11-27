@@ -6,75 +6,107 @@
 #    By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/11/05 14:02:03 by lensauva          #+#    #+#              #
-#    Updated: 2026/11/27 12:34:50 by lensauva         ###   ########lyon.fr    #
+#    Updated: 2026/11/27 19:03:52 by lensauva         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-# ================================ DIRECTORY ==================================== #
+# ================================ DIRECTORY ================================= #
 
-DIR_SRC		:= src
-DIR_OBJ		:= obj
-DIR_INC		:= include
+DIR_SRC			:= src
+DIR_SRC_BONUS	:= src_bonus
+DIR_INC			:= include
+DIR_INC_BONUS	:= include_bonus
+DIR_OBJ			:= obj
 
 # ================================ PROJET ==================================== #
 
-NAME		:= a.out 
-CC			:= cc
+NAME			:= libftprintf.a
+STAMP_MANDATORY	:= .mandatory
+STAMP_BONUS		:= .bonus
 
-# ================================ LIBFT ==================================== #
+# ================================ LIBFT ===================================== #
 
-DIR_LIBFT	:= libft
-LIBFT		:= libft.a
-LINK_LIBFT	:= ft
+DIR_LIBFT		:= libft
+LIBFT			:= $(DIR_LIBFT)/libft.a
 
-# ================================ FLAGS ==================================== #
+# ================================ FLAGS ===================================== #
 
-CFLAGS		:= -Wall -Wextra -Werror
-CFLAGS		:= 
-CINCLUDE	:= -I$(DIR_INC) -Ilibft -MMD -MP
-LDFLAGS		:= -L$(DIR_LIBFT) -l$(LINK_LIBFT)
+CC				:= cc
+CFLAGS			:= -Wall -Wextra -Werror
+CFLAGS			:= 
+DEPFLAGS		:= -MMD -MP
+INC				:= -I$(DIR_INC) -I$(DIR_LIBFT)
+INC_BONUS		:= -I$(DIR_INC_BONUS) -I$(DIR_LIBFT)
 
 # =============================== SOURCES ==================================== #
 
-SRC_FILES	:= ft_printf.c \
-			   ft_handle_sign.c \
-			   ft_handle_hex.c \
-			   ft_handle_prefix.c \
-			   ft_handle_suffix.c \
-			   ft_utils_nb.c \
-			   ft_utils_put_1.c \
-			   ft_utils_put_2.c \
-			   ft_utils_str.c \
-			   ft_specifier.c \
-			   tester2.c
+SRC_FILES		:= ft_printf.c \
+				   ft_set_sign.c \
+				   ft_set_hex.c \
+				   ft_utils_put_1.c \
+				   ft_utils_put_2.c \
+				   ft_utils_str.c \
+				   ft_specifier.c
 
-SRCS		:= $(addprefix $(DIR_SRC)/, $(SRC_FILES))
-OBJS		:= $(SRCS:$(DIR_SRC)/%.c=$(DIR_OBJ)/%.o)
-DEPS		:= $(OBJS:%.o=%.d)
+SRC_FILES_BONUS	:= ft_printf_bonus.c \
+				   ft_handle_width_bonus.c \
+				   ft_handle_sign_bonus.c \
+				   ft_handle_hex_bonus.c \
+				   ft_handle_prefix_bonus.c \
+				   ft_handle_precision_bonus.c \
+				   ft_handle_suffix_bonus.c \
+				   ft_utils_nb_bonus.c \
+				   ft_utils_put_1_bonus.c \
+				   ft_utils_put_2_bonus.c \
+				   ft_utils_str_bonus.c \
+				   ft_specifier_bonus.c
+
+SRCS			:= $(addprefix $(DIR_SRC)/, $(SRC_FILES))
+SRCS_BONUS		:= $(addprefix $(DIR_SRC_BONUS)/, $(SRC_FILES_BONUS))
+OBJS			:= $(SRCS:$(DIR_SRC)/%.c=$(DIR_OBJ)/%.o)
+OBJS_BONUS		:= $(SRCS_BONUS:$(DIR_SRC_BONUS)/%.c=$(DIR_OBJ)/%.o)
+DEPS			:= $(OBJS:.o=.d) $(OBJS_BONUS:.o=.d)
 
 # ================================ REGLES ==================================== #
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(DIR_LIBFT)/$(LIBFT)
-	$(CC) $(CINCLUDE) -o $@ $^ $(LDFLAGS)
+bonus: $(STAMP_BONUS)
 
-$(DIR_LIBFT)/$(LIBFT):
+$(NAME): $(STAMP_MANDATORY) $(OBJS) $(LIBFT)
+	ar rcs $(NAME) $(OBJS)
+
+$(STAMP_MANDATORY):
+	rm -f $(NAME) $(STAMP_BONUS)
+	touch $@
+
+$(STAMP_BONUS): $(OBJS_BONUS) $(LIBFT)
+	rm -f $(NAME) $(STAMP_MANDATORY)
+	touch $@
+	ar rcs $(NAME) $(OBJS_BONUS)
+
+$(DIR_OBJ)/%.o: $(DIR_SRC)/%.c
+	mkdir -p $(DIR_OBJ)
+	$(CC) $(CFLAGS) $(DEPFLAGS) $(INC) -c $< -o $@
+
+$(DIR_OBJ)/%.o: $(DIR_SRC_BONUS)/%.c
+	mkdir -p $(DIR_OBJ)
+	$(CC) $(CFLAGS) $(DEPFLAGS) $(INC_BONUS) -c $< -o $@
+
+$(LIBFT):
 	$(MAKE) -C $(DIR_LIBFT)
 
-$(DIR_OBJ)/%.o: $(DIR_SRC)/%.c 
-	$(CC) $(CFLAGS) $(CINCLUDE) -c $< -o $@
-
 clean:
-	rm -f $(OBJS)
-	rm -f $(DEPS)
+	rm -rf $(DIR_OBJ)
+	$(MAKE) -C $(DIR_LIBFT) clean
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(STAMP_MANDATORY) $(STAMP_BONUS)
+	$(MAKE) -C $(DIR_LIBFT) fclean
 
 re: fclean
 	$(MAKE) all
 
 -include $(DEPS)
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

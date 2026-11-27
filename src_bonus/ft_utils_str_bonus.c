@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_specifier.h                              :+:      :+:    :+:   */
+/*   ft_utils_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/25 17:43:55 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/25 17:45:42 by lensauva         ###   ########lyon.fr   */
+/*   Created: 2026/11/22 18:23:08 by lensauva          #+#    #+#             */
+/*   Updated: 2026/11/22 19:11:46 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_HANDLE_SPECIFIER_H
-# define FT_HANDLE_SPECIFIER_H
+char	*ft_strcpy(char *dst, const char *src)
+{
+	unsigned int	i;
 
-typedef struct s_specifier	t_specifier;
-
-void	set_sign(char *flag, char cspecifier, t_specifier *tspecifier);
-void	set_hex(char *flag, char cspecifier, t_specifier *tspecifier);
-void	set_prefix(char *flag, char cspecifier, t_specifier *tspecifier);
-void	set_suffix(char *flag, char cspecifier, t_specifier *tspecifier);
-
-#endif
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = src[i];
+	return (0);
+}

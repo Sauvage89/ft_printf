@@ -5,33 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/22 18:46:30 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/26 16:05:16 by lensauva         ###   ########lyon.fr   */
+/*   Created: 2026/11/27 13:49:44 by lensauva          #+#    #+#             */
+/*   Updated: 2026/11/27 14:28:15 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "ft_specifier.h"
-#include "libft.h"
 #include <stdint.h>
-
-ssize_t	ft_putstralloc_fd(t_stralloc *str, int fd)
-{
-	size_t	i;
-	ssize_t	ret;
-
-	i = 0;
-	ret = 0;
-	while (i < str->size)
-	{
-		ret += write(fd, str->buffer, str->size % str->max);
-		if ((size_t)ret < str->max && ret % str->size < str->size)
-			return (ERROR_WRITE);
-		i += str->size % str->max;
-	}
-	return (ret);
-}
-
+#include <unistd.h>
+#include "libft.h"
+#include "ft_utils.h"
 ssize_t	ft_putint_nsign_fd(long n, int fd)
 {
 	char	buffer[12];
@@ -65,6 +47,8 @@ ssize_t	ft_putuintbase_fd(unsigned int n, int fd, char *convert)
 	char			buffer[32];
 	int				len_n;
 
+	if (n == 0)
+		return (ft_putstr_fd("0", fd));
 	len_n = 0;
 	n_save = n;
 	while (n_save >= ft_strlen(convert))
