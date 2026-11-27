@@ -6,7 +6,7 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/27 13:24:35 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 20:32:58 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/27 20:56:35 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "ft_specifier.h"
 #include "ft_set_specifier.h"
 #include "ft_utils.h"
-#include <stdlib.h>
 #include <stdarg.h>
 
 static size_t	ft_verifier(const char *format)
@@ -44,7 +43,7 @@ static ssize_t	ft_print_specifier(char cspecifier, void *value)
 	return (ft_putspec_fd(&spec, cspecifier, 1));
 }
 
-size_t	ft_dispatch(const char **format, va_list ap, size_t *ret)
+static size_t	ft_dispatch(const char **format, va_list ap, size_t *ret)
 {
 	void	*ap_val;
 	size_t	len;
@@ -84,7 +83,7 @@ int	ft_printf(const char *format, ...)
 			ret_tmp = ft_putstr_fd(format, 1);
 		else
 			ret_tmp = ft_putnstr_fd(format, ret_tmp - (size_t)format, 1);
-		if ((ssize_t)ret_tmp == -1)
+		if ((ssize_t)ret_tmp < 0)
 			break ;
 		format = format + ret_tmp;
 		ret += (size_t)ret_tmp;
