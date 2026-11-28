@@ -6,11 +6,10 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/11 12:39:25 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 20:40:44 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/28 21:13:45 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_printf_bonus.h"
 #include "ft_utils_bonus.h"
 #include "ft_specifier_bonus.h"
@@ -42,21 +41,17 @@ static ssize_t	ft_print_specifier(char *flag, char cspecifier, void *value)
 {
 	t_specifier	spec;
 
-	ft_init_specifier(&spec);
-	ft_set_value(cspecifier, &spec, value);
-	if (cspecifier == 's' && spec.value.as_str == 0)
+	ft_set_specifier(&spec, flag, cspecifier, value);
+	if (spec.converter == 's' && spec.value.as_str == 0)
 		return (ft_putstr_fd("(null)", 1));
-	if (cspecifier == 'p' && spec.value.as_ptr == 0)
+	if (spec.converter == 'p' && spec.value.as_ptr == 0)
 		return (ft_putstr_fd("(nil)", 1));
-	ft_set_sign(flag, cspecifier, &spec);
-	ft_set_hex(flag, cspecifier, &spec);
-	ft_set_prefix(flag, cspecifier, &spec);
-	ft_set_suffix(flag, cspecifier, &spec);
-	if (ft_strchr("i", cspecifier) && ft_strchr(flag, '.')
-		&& ft_atoi(ft_strrchr(flag, '.') + 1) == 0
-		&& spec.value.as_int == 0)
-		return (ft_putspec_nzero_fd(&spec, 1));
-	return (ft_putspec_fd(&spec, cspecifier, 1));
+	ft_set_width(&spec);
+	ft_set_sign(&spec);
+	ft_set_hex(&spec);
+	ft_set_prefix(&spec);
+	ft_set_suffix(&spec);
+	return (ft_putspec_fd(&spec, 1));
 }
 
 static ssize_t	ft_dispatch(const char **format, va_list ap, size_t *ret)

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils_nb_bonus.c                                :+:      :+:    :+:   */
+/*   ft_utils_nb_1_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 18:26:19 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 17:18:20 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/28 21:39:56 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_utils_bonus.h"
 
 unsigned int	len_int(long n)
 {
@@ -69,6 +69,8 @@ int	ft_atoi_prefix(char *flag)
 {
 	while (*flag && ft_strchr("-0# +%", *flag))
 		flag++;
+	if (*flag == '.')
+		return (0);
 	return (ft_atoi(flag));
 }
 

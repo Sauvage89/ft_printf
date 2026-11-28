@@ -6,14 +6,14 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/22 18:47:58 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 19:56:25 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/28 20:03:39 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_SPECIFIER_BONUS_H
 # define FT_SPECIFIER_BONUS_H
 
 # include <aio.h>
-
+# include <stdbool.h>
 # define STRALLOC_MAX_BUFFER 64
 
 typedef union u_value
@@ -33,16 +33,27 @@ typedef struct s_stralloc
 	size_t	max;
 }	t_stralloc;
 
+typedef struct s_asflag
+{
+	bool	as_width;
+	bool	as_sign;
+	bool	as_hex;
+	bool	as_prefix;
+	bool	as_value;
+	bool	as_suffix;
+}	t_asflag;
+
 typedef struct s_specifier
 {
-	t_value		value;
+	char		converter;
+	char		*flag;
+	t_asflag	asflag;
+	t_stralloc	width;
 	char		sign[2];
 	char		hex[3];
 	t_stralloc	prefix;
+	t_value		value;
 	t_stralloc	suffix;
 }	t_specifier;
-
-void	ft_init_specifier(t_specifier *spec);
-void	ft_set_value(char cspecifier, t_specifier *spec, void *value);
 
 #endif

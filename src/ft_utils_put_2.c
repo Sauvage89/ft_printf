@@ -6,7 +6,7 @@
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/27 13:50:14 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/27 20:58:11 by lensauva         ###   ########lyon.fr   */
+/*   Updated: 2026/11/28 21:23:22 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static ssize_t	ft_putvalue_fd(t_specifier *spec, char cspecifier, int fd)
 	else if (cspecifier == 'u')
 		return (ft_putuintbase_fd(spec->value.as_uint, fd, "0123456789"));
 	else if (cspecifier == 'x')
-		return (ft_putuintbase_fd(spec->value.as_uint, fd, "0123456789abcdef"));
+		return (ft_putuintbase_fd(spec->value.as_uint, fd, BASE_16_DOWN));
 	else if (cspecifier == 'X')
-		return (ft_putuintbase_fd(spec->value.as_uint, fd, "0123456789ABCDEF"));
+		return (ft_putuintbase_fd(spec->value.as_uint, fd, BASE_16_UP));
 	else if (cspecifier == 'p')
-		return (ft_putulbase_fd(spec->value.as_ul, fd, "0123456789abcdef"));
+		return (ft_putulbase_fd(spec->value.as_ul, fd, BASE_16_DOWN));
 	return (0);
 }
 

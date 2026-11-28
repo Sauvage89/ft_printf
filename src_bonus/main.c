@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils_str.c                                     :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lensauva <lensauva@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/22 18:23:08 by lensauva          #+#    #+#             */
-/*   Updated: 2026/11/22 19:11:46 by lensauva         ###   ########lyon.fr   */
+/*   Created: 2026/11/28 19:29:48 by lensauva          #+#    #+#             */
+/*   Updated: 2026/11/28 20:33:18 by lensauva         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *dst, const char *src)
+int	main()
 {
-	unsigned int	i;
+	int	nb = 57;
 
-	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = src[i];
-	return (0);
+	printf("'%7.5d'\n", nb);
+	printf("'%-7.5d'\n", nb);
 }
